@@ -1,0 +1,19 @@
+output "vpc_id" {
+  value = aws_vpc.main.id
+}
+
+output "private_subnet_ids" {
+  value = aws_subnet.private[*].id
+}
+
+output "site_bucket_name" {
+  value = aws_s3_bucket.site.bucket
+}
+
+output "tunnel_id" {
+  value = cloudflare_zero_trust_tunnel_cloudflared.web.id
+}
+
+output "domain_name" {
+  value = var.domain_name
+}

@@ -1,0 +1,43 @@
+# Terraform static site template
+
+This repository contains a generalized Terraform template for deploying a static website using AWS and Cloudflare.
+
+## Goals
+
+- keep the site behind Cloudflare Zero Trust while it is private
+- serve static content from S3 using EC2 instances
+- route traffic to the domain through a Cloudflare tunnel
+- keep deployment reproducible and easy to review
+- avoid hardcoded sensitive identifiers in the repository
+
+## Core infrastructure
+
+- AWS VPC and private networking
+- Amazon Linux 2023 EC2 fleet behind autoscaling
+- NGINX serving content from S3
+- Cloudflare tunnel for ingress
+- Cloudflare Access gated preview
+- DNS and TLS hardening
+
+## Required inputs
+
+See `terraform.tfvars.example` for the required values.
+
+## Example deployment
+
+```bash
+cp terraform.tfvars.example terraform.tfvars
+terraform init
+terraform plan
+terraform apply
+```
+
+## Make public
+
+To make the site public instead of private, remove or comment out the contents of `access.tf` before running `terraform apply`.
+
+## Configuration notes
+
+- `aws_profile` is optional if you are using default AWS credentials.
+- `project_name` should be lowercase and hyphenated.
+- `domain_name` should be a valid public domain or subdomain managed in Cloudflare.
