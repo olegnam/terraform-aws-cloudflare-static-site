@@ -1,3 +1,5 @@
+Note: Hosting a static site can always be done more cost effectively using serverless options. I wanted to leverage load balancing and cloud flares zero trust and access protection features.
+
 # Terraform static site on AWS + Cloudflare
 
 This project deploys a private static website on AWS with:
